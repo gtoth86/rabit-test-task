@@ -11,25 +11,48 @@ class Router
             exit;
         }
 
-        $controllerName = $this->resolveControllerName($getVariables);
-        $controller = new $controllerName();
-
+        $controller = $this->getControllerInstance($getVariables);
         $actionName = $this->resolveActionName($getVariables);
 
-        $controller->{$actionName}();
+        $this->callAction($controller, $actionName);
     }
 
-    private function resolveControllerName($getVariables)
+    private function getControllerInstance($getVariables)
     {
-        if (isset($getVariables["controller"])) {
-            return sprintf('App\Controller\%sController', ucfirst($getVariables["controller"]));
+        if (!isset($getVariables["controller"])) {
+            $this->redirectToNotFoundPage();
         }
+
+        $controllerName = sprintf('App\Controller\%sController', ucfirst($getVariables["controller"]));
+
+        if (!class_exists($controllerName)) {
+            $this->redirectToNotFoundPage();
+        }
+
+        return new $controllerName();
     }
 
     private function resolveActionName($getVariables)
     {
-        if (isset($getVariables["action"])) {
-            return sprintf("%sAction", $getVariables["controller"]);
+        if (!isset($getVariables["action"])) {
+            $this->redirectToNotFoundPage();
         }
+
+        return sprintf("%sAction", $getVariables["action"]);
+    }
+
+    private function callAction($controller, $actionName)
+    {
+        if (!method_exists($controller,$actionName)) {
+            $this->redirectToNotFoundPage();
+        }
+
+        $controller->{$actionName}();
+    }
+
+    private function redirectToNotFoundPage()
+    {
+        header('Location: index.php?controller=index&action=notFound');
+        exit;
     }
 }
