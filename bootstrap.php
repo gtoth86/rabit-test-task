@@ -25,7 +25,7 @@ if (!$dbExist) {
 
     require __DIR__ . '/app/install.php';
 
-    header('Location: index.php?controller=index&action=index');
+    header('Location: /index/index');
     exit;
 }
 

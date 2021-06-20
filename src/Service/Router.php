@@ -14,7 +14,7 @@ class Router
     public function handle(array $getVariables): void
     {
         if (empty($getVariables)) {
-            header('Location: index.php?controller=index&action=index');
+            header('Location: /index/index');
             exit;
         }
 
@@ -80,7 +80,7 @@ class Router
      */
     private function redirectToNotFoundPage(): void
     {
-        header('Location: index.php?controller=index&action=notFound');
+        header('Location: /index/notFound');
         exit;
     }
 }
