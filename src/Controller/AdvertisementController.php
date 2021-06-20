@@ -4,7 +4,12 @@ namespace App\Controller;
 
 class AdvertisementController extends AbstractController
 {
-    public function listAction()
+    /**
+     * List of advertisements action
+     *
+     * @throws \App\Exception\ViewNotFoundException
+     */
+    public function listAction(): void
     {
         $this->render('advertisement/list', ["advertisements" => array_values($this->getRepository()->getAdvertisements())]);
     }

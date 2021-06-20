@@ -4,12 +4,22 @@ namespace App\Controller;
 
 class IndexController extends AbstractController
 {
-    public function indexAction()
+    /**
+     * Default page action
+     *
+     * @throws \App\Exception\ViewNotFoundException
+     */
+    public function indexAction(): void
     {
         $this->render("index/index");
     }
 
-    public function notFoundAction()
+    /**
+     * 404 not found action
+     *
+     * @throws \App\Exception\ViewNotFoundException
+     */
+    public function notFoundAction(): void
     {
         $this->render("index/404");
     }
