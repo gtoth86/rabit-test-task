@@ -2,9 +2,11 @@
 
 namespace App\Service;
 
+use App\Controller\AbstractController;
+
 class Router
 {
-    public function handle($getVariables)
+    public function handle(array $getVariables): void
     {
         if (empty($getVariables)) {
             header('Location: index.php?controller=index&action=index');
@@ -17,7 +19,7 @@ class Router
         $this->callAction($controller, $actionName);
     }
 
-    private function getControllerInstance($getVariables)
+    private function getControllerInstance(array $getVariables): AbstractController
     {
         if (!isset($getVariables["controller"])) {
             $this->redirectToNotFoundPage();
@@ -32,7 +34,7 @@ class Router
         return new $controllerName();
     }
 
-    private function resolveActionName($getVariables)
+    private function resolveActionName(array $getVariables): string
     {
         if (!isset($getVariables["action"])) {
             $this->redirectToNotFoundPage();
@@ -41,7 +43,7 @@ class Router
         return sprintf("%sAction", $getVariables["action"]);
     }
 
-    private function callAction($controller, $actionName)
+    private function callAction(AbstractController $controller, string $actionName)
     {
         if (!method_exists($controller,$actionName)) {
             $this->redirectToNotFoundPage();
@@ -50,7 +52,7 @@ class Router
         $controller->{$actionName}();
     }
 
-    private function redirectToNotFoundPage()
+    private function redirectToNotFoundPage(): void
     {
         header('Location: index.php?controller=index&action=notFound');
         exit;
