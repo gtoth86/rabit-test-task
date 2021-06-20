@@ -9,8 +9,13 @@
 </head>
 
 <body>
+
 <div class="menu">
-    <a href="index.php?controller=user&action=list">Users</a>
-    <a href="index.php?controller=advertisement&action=list">Advertisements</a>
+    <nav>
+        <ul>
+            <li><a href="index.php?controller=user&action=list">Users</a></li>
+            <li><a href="index.php?controller=advertisement&action=list">Advertisements</a></li>
+        </ul>
+    </nav>
 </div>
 <?php
