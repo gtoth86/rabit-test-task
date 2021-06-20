@@ -3,4 +3,8 @@ require __DIR__ . '/../bootstrap.php';
 
 $router = $container->get(\App\Service\Router::class);
 
-$router->handle($_GET);
+try {
+    $router->handle($_GET);
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
