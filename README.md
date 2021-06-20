@@ -12,6 +12,8 @@ It's a 3 paged application, with a minimal design, and database access, which is
 ```sh
 $ composer install
 ```
+Create config.php from app/config.php.dist and fill your database information.
+
 
 ### Usage
 Clone the app and create a virtual host, which points to the web directory. After the first run, the app creates the database itself and places some fixture data into it.
