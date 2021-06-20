@@ -18,4 +18,6 @@
         </ul>
     </nav>
 </div>
+
+<div class="content">
 <?php
