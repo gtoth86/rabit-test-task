@@ -1,0 +1,8 @@
+<?php
+
+$dbConfig = [
+    "db_name" => "database_name",
+    "db_user" => "database_user",
+    "db_password" => "database_password",
+    "db_host" => "database_host",
+];
