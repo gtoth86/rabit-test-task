@@ -4,6 +4,7 @@
   },
   "require": {
     "php": ">=7.4.0",
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "php-di/php-di": "^6.3"
   }
 }
