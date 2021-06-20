@@ -14,12 +14,22 @@ class Repository
         $this->pdo = $pdo;
     }
 
-    public function getUsers()
+    /**
+     * Returns an array of User objects
+     *
+     * @return User[]
+     */
+    public function getUsers(): array
     {
         return $this->pdo->query("SELECT * FROM users")->fetchAll(\PDO::FETCH_CLASS, \App\Model\User::class);
     }
 
-    public function getAdvertisements()
+    /**
+     * Returns an array of Advertisement objects
+     *
+     * @return User[]
+     */
+    public function getAdvertisements(): array
     {
         $result = $this->pdo->query("
           SELECT 
